@@ -1,0 +1,77 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'java'
+}
+
+group = 'com.Teenkung'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'spigotmc-repo'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
+    maven {
+        name = 'iridiumdevelopment'
+        url = 'https://nexus.iridiumdevelopment.net/repository/maven-releases/'
+    }
+    maven {
+        name = 'nbtapi'
+        url = 'https://repo.codemc.org/repository/maven-public/'
+    }
+    maven{
+        name = 'mmoitems'
+        url = 'https://mvn.lumine.io/repository/maven-public/'
+    }
+    maven {
+        name = 'itemsadder'
+        url 'https://jitpack.io'
+    }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT'
+    implementation 'com.iridium:IridiumColorAPI:1.0.6'
+    compileOnly("de.tr7zw:item-nbt-api-plugin:2.11.1")
+    compileOnly("net.Indyuce:MMOItems:6.7.3")
+    compileOnly("io.lumine:MythicLib-dist:1.4")
+    compileOnly 'com.github.LoneDev6:API-ItemsAdder:3.2.5'
+    compileOnly fileTree('libs')
+}
+
+shadowJar {
+    dependencies {
+        include dependency('com.iridium:IridiumColorAPI:1.0.6')
+        include dependency("de.tr7zw:item-nbt-api-plugin:2.11.1")
+    }
+}
+
+def targetJavaVersion = 17
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}

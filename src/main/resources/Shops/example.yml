@@ -1,0 +1,59 @@
+ID: ExampleShop
+Enabled: false
+GUI:
+  Title: Example Shop
+  Layout:
+    - 'BBBBBBBBB'
+    - 'BAAAAAAAB'
+    - 'BAAAAAAAB'
+    - 'BAAAAAAAB'
+    - 'BAAAAAAAB'
+    - 'BBBBBBBBB'
+  Items:
+    B:
+      Material: BLACK_STAINED_GLASS_PANE
+      Amount: 1
+      Display: "&f "
+      Lore: []
+      Model: 0
+      Glowing: false
+    A:
+      Material: WHITE_STAINED_GLASS_PANE
+      Amount: 1
+      Display: "&f "
+      Lore: []
+      Model: 0
+      Glowing: false
+  NextPageSlot: 53
+  PreviousPageSlot: 45
+  ShopItemsSlot: [10, 11, 12, 13, 14, 15, 16, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 31, 32, 33, 34, 37, 38, 39, 40, 41, 42, 43]
+  ShopItems:
+    1:
+      Item:
+        Type: MMOItems
+        Category: SWORD
+        ID: TEST
+        Amount: 1
+      Price:
+        Type: Vault
+        Value: 3000
+    2:
+      Item:
+        Type: ItemsAdder
+        ID: example:example_item
+        Amount: 1
+      Price:
+        Type: DevCurrency
+        ID: Example_Currency
+        Value: 120
+    3:
+      Item:
+        Type: Vanilla
+        Material: WHITE_STAINED_GLASS_PANE
+        Amount: 1
+        Display: "&f "
+        Lore: []
+        Model: 0
+      Price:
+        Type: Vault
+        Value: 100

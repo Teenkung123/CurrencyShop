@@ -1,0 +1,6 @@
+name: CurrencyShop
+version: '${version}'
+main: com.teenkung.currencyshop.CurrencyShop
+api-version: 1.19
+prefix: CurrencyShop
+authors: [ Teenkung123 ]
